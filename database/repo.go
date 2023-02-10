@@ -51,12 +51,13 @@ func DeleteById(id string) {
 	fmt.Println("Number of deleted entities => ", DeletionResult.DeletedCount)
 }
 
-func DeleteAll() {
+func DeleteAll() int64 {
 	DeletionResult, DeletionError := Collection.DeleteMany(context.Background(), bson.M{}, nil)
 	if DeletionError != nil {
 		log.Fatal("Error while Deleting the item, [ERROR] => ", DeletionError)
 	}
 	fmt.Println("Number of deleted entities => ", DeletionResult.DeletedCount)
+	return DeletionResult.DeletedCount
 }
 
 func GetAll() []primitive.M {

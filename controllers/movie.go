@@ -83,3 +83,15 @@ func DeleteOne(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(params["id"])
 }
+
+func DeleteAll(w http.ResponseWriter, r *http.Request) {
+	// set the header
+	w.Header().Set("Content-Type", "application/json")
+
+	// specify what method you want to handle for this handler
+	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
+
+	deletedRowsCount := database.DeleteAll()
+
+	json.NewEncoder(w).Encode(deletedRowsCount)
+}
